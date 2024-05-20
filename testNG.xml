@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Cucumber Suite">
+<test thread-count="2" name="UI_Cucumber_SampleTemplate">
+    <classes>
+        <class name="runners.ParallelRunner"/>
+    </classes>
+</test> <!-- UI_Cucumber_SampleTemplate -->
+</suite> <!-- Default Suite -->

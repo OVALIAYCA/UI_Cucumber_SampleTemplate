@@ -5,12 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
 import utilities.Driver;
 import utilities.Environments;
-import utilities.PropManager;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -20,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
+
 import static org.junit.Assert.assertTrue;
 
 @Slf4j
