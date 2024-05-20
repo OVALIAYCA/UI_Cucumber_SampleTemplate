@@ -97,6 +97,13 @@ public class Driver {
 
         public static void close() {
             if (driver != null) {
+                driver.close();
+                driver = null;
+            }
+        }
+
+        public static void quit(){
+            if (driver != null){
                 driver.quit();
                 driver = null;
             }
