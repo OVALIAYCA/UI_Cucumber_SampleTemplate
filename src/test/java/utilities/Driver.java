@@ -31,25 +31,30 @@ public class Driver {
                     case "chrome":
                         WebDriverManager.chromedriver().setup();
                         driver = new ChromeDriver(options);
+                        driver.manage().window().maximize();
                         break;
                 case "chrome-headless":
                     WebDriverManager.chromedriver().setup();
                     options.addArguments("--headless=new");
                     driver = new ChromeDriver(options);
+                    driver.manage().window().maximize();
                    break;
                     case "firefox":
                         WebDriverManager.firefoxdriver().setup();
                         driver = new FirefoxDriver();
+                        driver.manage().window().maximize();
                         break;
                 case "firefox-headless":
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver(new FirefoxOptions().addArguments("--headless=new"));
+                    driver.manage().window().maximize();
                     break;
                     case "edge":
                         if (!System.getProperty("os.name").toLowerCase().contains("windows"))
                             throw new WebDriverException("Your OS doesn't support Edge");
                         WebDriverManager.edgedriver().setup();
                         driver = new EdgeDriver();
+                        driver.manage().window().maximize();
                         break;
 
                     case "safari":
@@ -57,6 +62,7 @@ public class Driver {
                             throw new WebDriverException("Your OS doesn't support Safari");
                         WebDriverManager.getInstance(SafariDriver.class).setup();
                         driver = new SafariDriver();
+                        driver.manage().window().maximize();
                         break;
 
                     case "cloud" :
@@ -89,7 +95,7 @@ public class Driver {
             return driver;
         }
 
-        public static void closeDriver() {
+        public static void close() {
             if (driver != null) {
                 driver.quit();
                 driver = null;

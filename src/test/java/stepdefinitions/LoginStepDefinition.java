@@ -1,11 +1,15 @@
 package stepdefinitions;
 
 import io.cucumber.java.en.Given;
+import lombok.extern.slf4j.Slf4j;
 import pages.Base;
+import utilities.Driver;
 import utilities.PropManager;
 
 import static org.junit.Assert.assertEquals;
 
+
+@Slf4j
 public class LoginStepDefinition extends Base {
 
     @Given("Open browser and Go to {string}")
@@ -22,7 +26,7 @@ public class LoginStepDefinition extends Base {
 
     @Given("Close the page")
     public void close_the_page() {
-        driver.close();
-    }
+       Driver.close();
 
+    }
 }
