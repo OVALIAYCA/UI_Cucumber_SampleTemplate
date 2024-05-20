@@ -1,0 +1,16 @@
+package utilities;
+
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public enum Environments {
+    PRODUCTION("production"),
+    STAGE("stage");
+
+    public final String name;
+
+    Environments(String name) {
+        this.name = name;
+    }
+}
