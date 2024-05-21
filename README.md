@@ -11,7 +11,6 @@ Write Log.info to file
 Take Screenshot failed test case
 Read data test from Excel file (xlsx, csv, json,...)
 Base function in the package: utilities
-Read data test from Json file
 Use JavaFaker to generate data
 ANSIColors
 Two different Environments as stage and product
@@ -26,7 +25,7 @@ mvn clean test -DsuiteXmlFile=<name.xml>
 Example:mvn clean test -DsuiteXmlFile=sanityTest.xml
 
 ### REPORTS
-1. Extent Report
+1. Cucumber Report
 
 2. Allure Report
 
