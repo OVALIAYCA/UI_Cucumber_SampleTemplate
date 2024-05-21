@@ -3,8 +3,8 @@ package utilities;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,6 +15,8 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
+
+import java.time.Duration;
 
 
 @Slf4j
@@ -34,15 +36,17 @@ public class Driver {
                 String browser = PropManager.getProperties(env,"browser");
                 switch (browser) {
                     case "chrome":
-                        WebDriverManager.chromedriver().setup();
-                        driver = new ChromeDriver(options);
+                        driver = new ChromeDriver();
                         driver.manage().window().maximize();
                         ExtentSparkReporter spark = new ExtentSparkReporter("target/ExtentReports.html");
                         extent = new ExtentReports();
                         extent.attachReporter(spark);
+                        ChromeOptions chromeOptions = new ChromeOptions();
+                        chromeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
+                        chromeOptions.setPageLoadTimeout(Duration.ofSeconds(14));
                         break;
                 case "chrome-headless":
-                    WebDriverManager.chromedriver().setup();
+                  //  WebDriverManager.chromedriver().setup();
                     options.addArguments("--headless=new");
                     driver = new ChromeDriver(options);
                     driver.manage().window().maximize();
@@ -51,7 +55,7 @@ public class Driver {
                     extent.attachReporter(spark);
                    break;
                     case "firefox":
-                        WebDriverManager.firefoxdriver().setup();
+                    //    WebDriverManager.firefoxdriver().setup();
                         driver = new FirefoxDriver();
                         driver.manage().window().maximize();
                         spark = new ExtentSparkReporter("target/ExtentReports.html");
@@ -59,7 +63,7 @@ public class Driver {
                         extent.attachReporter(spark);
                         break;
                 case "firefox-headless":
-                    WebDriverManager.firefoxdriver().setup();
+                  //  WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver(new FirefoxOptions().addArguments("--headless=new"));
                     driver.manage().window().maximize();
                     spark = new ExtentSparkReporter("target/ExtentReports.html");
@@ -69,7 +73,7 @@ public class Driver {
                     case "edge":
                         if (!System.getProperty("os.name").toLowerCase().contains("windows"))
                             throw new WebDriverException("Your OS doesn't support Edge");
-                        WebDriverManager.edgedriver().setup();
+                      //  WebDriverManager.edgedriver().setup();
                         driver = new EdgeDriver();
                         driver.manage().window().maximize();
                         spark = new ExtentSparkReporter("target/ExtentReports.html");
@@ -80,7 +84,7 @@ public class Driver {
                     case "safari":
                         if (!System.getProperty("os.name").toLowerCase().contains("mac"))
                             throw new WebDriverException("Your OS doesn't support Safari");
-                        WebDriverManager.getInstance(SafariDriver.class).setup();
+                       // WebDriverManager.getInstance(SafariDriver.class).setup();
                         driver = new SafariDriver();
                         driver.manage().window().maximize();
                         spark = new ExtentSparkReporter("target/ExtentReports.html");
