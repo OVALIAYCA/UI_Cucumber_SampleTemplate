@@ -17,7 +17,7 @@ public class LoginStepDefinition extends Base {
 
     @Given("Open browser and Go to {string}")
     public void open_browser_and_go_to(String url) {
-       driver.get(PropManager.getProperties(env,"url"));
+       driver.get(PropManager.getProperties(env,url));
     }
 
     @Given("Verify that title is {string}")
@@ -29,7 +29,7 @@ public class LoginStepDefinition extends Base {
 
     @Given("Close the page")
     public void close_the_page() {
-       Driver.close();
+       Driver.quit();
     }
 
     @Given("Click the {string} button")

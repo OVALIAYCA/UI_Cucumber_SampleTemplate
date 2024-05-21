@@ -4,9 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>QueryCartMobileProject</groupId>
-    <artifactId>QueryCartMobileProject</artifactId>
+    <groupId>com.example</groupId>
+    <artifactId>UI_Cucumber_SampleTemplate</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>TestAutomationFrameworkCucumber</name>
+    <url>githubUrl</url>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -35,6 +37,7 @@
             <artifactId>webdrivermanager</artifactId>
             <version>5.8.0</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
@@ -130,10 +133,11 @@
             <version>2.17.3</version>
             <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
-            <version>4.1.5</version>
+            <version>5.0.9</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber7-adapter -->

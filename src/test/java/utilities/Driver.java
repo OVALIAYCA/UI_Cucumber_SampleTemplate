@@ -1,5 +1,8 @@
 package utilities;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +21,8 @@ import org.openqa.selenium.safari.SafariDriver;
 public class Driver {
         private Driver(){}
         private static WebDriver driver;
+        protected static ExtentReports extent;
+        protected static ExtentTest test;
         /**
          * This method returns desired WebDriver which is designated in <environment>.properties file.
          * That's why constructor is private, only one instance of web driver runs during whole process.
@@ -32,22 +37,34 @@ public class Driver {
                         WebDriverManager.chromedriver().setup();
                         driver = new ChromeDriver(options);
                         driver.manage().window().maximize();
+                        ExtentSparkReporter spark = new ExtentSparkReporter("target/ExtentReports.html");
+                        extent = new ExtentReports();
+                        extent.attachReporter(spark);
                         break;
                 case "chrome-headless":
                     WebDriverManager.chromedriver().setup();
                     options.addArguments("--headless=new");
                     driver = new ChromeDriver(options);
                     driver.manage().window().maximize();
+                    spark = new ExtentSparkReporter("target/ExtentReports.html");
+                    extent = new ExtentReports();
+                    extent.attachReporter(spark);
                    break;
                     case "firefox":
                         WebDriverManager.firefoxdriver().setup();
                         driver = new FirefoxDriver();
                         driver.manage().window().maximize();
+                        spark = new ExtentSparkReporter("target/ExtentReports.html");
+                        extent = new ExtentReports();
+                        extent.attachReporter(spark);
                         break;
                 case "firefox-headless":
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver(new FirefoxOptions().addArguments("--headless=new"));
                     driver.manage().window().maximize();
+                    spark = new ExtentSparkReporter("target/ExtentReports.html");
+                    extent = new ExtentReports();
+                    extent.attachReporter(spark);
                     break;
                     case "edge":
                         if (!System.getProperty("os.name").toLowerCase().contains("windows"))
@@ -55,6 +72,9 @@ public class Driver {
                         WebDriverManager.edgedriver().setup();
                         driver = new EdgeDriver();
                         driver.manage().window().maximize();
+                        spark = new ExtentSparkReporter("target/ExtentReports.html");
+                        extent = new ExtentReports();
+                        extent.attachReporter(spark);
                         break;
 
                     case "safari":
@@ -63,6 +83,9 @@ public class Driver {
                         WebDriverManager.getInstance(SafariDriver.class).setup();
                         driver = new SafariDriver();
                         driver.manage().window().maximize();
+                        spark = new ExtentSparkReporter("target/ExtentReports.html");
+                        extent = new ExtentReports();
+                        extent.attachReporter(spark);
                         break;
 
                     case "cloud" :
@@ -98,6 +121,7 @@ public class Driver {
         public static void close() {
             if (driver != null) {
                 driver.close();
+                extent.flush();
                 driver = null;
             }
         }
@@ -105,6 +129,7 @@ public class Driver {
         public static void quit(){
             if (driver != null){
                 driver.quit();
+                extent.flush();
                 driver = null;
             }
         }
