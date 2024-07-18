@@ -13,12 +13,12 @@ import org.junit.runner.RunWith;
                 "json:target/json-reports/cucumber.json",
                 "junit:target/xml-report/cucumber.xml",
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
-                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
+                "rerun:target/rerun.txt"
         },
-        features = "src/test/resources/features",
-        glue = {"stepdefinitions","hooks"},
+        features = "src/test/resources/features", //essential
+        glue = {"stepdefinitions","hooks"}, //essential
 
-        tags = "@url",
+        tags = "@Smoke",
 
         dryRun =false
 )
